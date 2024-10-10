@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">YOLOv8 TfLite</string>
     <string name="gpu">GPU</string>
+    <string name="key">密码</string>
+    <string name="phonenumber">手机号</string>
+    <string name="emailEditText">邮箱</string>
+    <string name="UserName">用户名</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="detection_results">Detection Results</string>
 </resources>

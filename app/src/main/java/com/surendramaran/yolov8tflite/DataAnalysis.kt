@@ -23,9 +23,9 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class DataAnalysis : AppCompatActivity(), Detector.DetectorListener {
+    // 创建视图绑定变量
     private lateinit var binding: DataAnalysisBinding
     private val isFrontCamera = false
-
     private var preview: Preview? = null
     private var imageAnalyzer: ImageAnalysis? = null
     private var camera: Camera? = null
@@ -36,15 +36,20 @@ class DataAnalysis : AppCompatActivity(), Detector.DetectorListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 创建该绑定类的实例
         binding = DataAnalysisBinding.inflate(layoutInflater)
+        // 将根视图传递给setContentView()使其成为屏幕上的活动视图
         setContentView(binding.root)
 
+        // 创建单线程的线程池
         cameraExecutor = Executors.newSingleThreadExecutor()
 
+        // 在线程中初始化一个检测器，避免阻塞主线程。
         cameraExecutor.execute {
             detector = Detector(baseContext, MODEL_PATH, LABELS_PATH, this)
         }
 
+        // 获得权限则启动相机
         if (allPermissionsGranted()) {
             startCamera()
         } else {
@@ -69,6 +74,7 @@ class DataAnalysis : AppCompatActivity(), Detector.DetectorListener {
         }
     }
 
+    // 调用startCamera启动相机，
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
@@ -146,6 +152,7 @@ class DataAnalysis : AppCompatActivity(), Detector.DetectorListener {
         }
     }
 
+    // 检查相机权限，如果没有权限，则请求用户授予。
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
@@ -170,9 +177,11 @@ class DataAnalysis : AppCompatActivity(), Detector.DetectorListener {
         }
     }
 
+    // 伴生对象，定义静态成员，创建共享的属性和方法
     companion object {
         private const val TAG = "Camera"
         private const val REQUEST_CODE_PERMISSIONS = 10
+        // 可变列表，包含一个元素：相机权限。这个权限是Android系统定义的，用于请求访问设备的相机。
         private val REQUIRED_PERMISSIONS = mutableListOf (
             Manifest.permission.CAMERA
         ).toTypedArray()
