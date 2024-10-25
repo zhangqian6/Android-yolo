@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1063395552811",
+    "project_id": "facedetection-c332f",
+    "storage_bucket": "facedetection-c332f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063395552811:android:73c9ad3efaa4e83e71046e",
+        "android_client_info": {
+          "package_name": "com.surendramaran.yolov8tflite"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZnOYssvdH1_yvTtu_DW5Q-NSaj8eIx_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
